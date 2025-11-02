@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3add0116f0ca49f0a67b8933810d717c" Name="Diagram1">
+        <EntityTypeShape EntityType="NUMLAutomatedTranscriptModel.AdminStaff" Width="1.5" PointX="5.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="NUMLAutomatedTranscriptModel.Batch" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NUMLAutomatedTranscriptModel.Campus" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NUMLAutomatedTranscriptModel.Coordinator" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NUMLAutomatedTranscriptModel.Cours" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NUMLAutomatedTranscriptModel.Degree" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NUMLAutomatedTranscriptModel.Endpoint" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NUMLAutomatedTranscriptModel.Enroll" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NUMLAutomatedTranscriptModel.ExamBranch" Width="1.5" PointX="9.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NUMLAutomatedTranscriptModel.Permission" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NUMLAutomatedTranscriptModel.Programme" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="NUMLAutomatedTranscriptModel.RepeatedCours" Width="1.5" PointX="7.5" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NUMLAutomatedTranscriptModel.Result" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NUMLAutomatedTranscriptModel.Scheme" Width="1.5" PointX="11.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NUMLAutomatedTranscriptModel.Semester" Width="1.5" PointX="7.5" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="NUMLAutomatedTranscriptModel.Student" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NUMLAutomatedTranscriptModel.StudentsCours" Width="1.5" PointX="11.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NUMLAutomatedTranscriptModel.UserRole" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NUMLAutomatedTranscriptModel.User" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <AssociationConnector Association="NUMLAutomatedTranscriptModel.FK_AdminStaff_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="NUMLAutomatedTranscriptModel.FK_Permissions_Endpoints" ManuallyRouted="false" />
+        <AssociationConnector Association="NUMLAutomatedTranscriptModel.FK_Permissions_UserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="NUMLAutomatedTranscriptModel.FK_RepeatedCourses_Programmes" ManuallyRouted="false" />
+        <AssociationConnector Association="NUMLAutomatedTranscriptModel.FK_Semesters_Programmes" ManuallyRouted="false" />
+        <AssociationConnector Association="NUMLAutomatedTranscriptModel.FK_RepeatedCourses_Students" ManuallyRouted="false" />
+        <AssociationConnector Association="NUMLAutomatedTranscriptModel.FK_Semesters_Students" ManuallyRouted="false" />
+        <AssociationConnector Association="NUMLAutomatedTranscriptModel.FK_Students_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="NUMLAutomatedTranscriptModel.FK_Users_UserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

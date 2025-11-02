@@ -1,0 +1,985 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="NUMLAutomatedTranscriptModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminStaff">
+          <Key>
+            <PropertyRef Name="AdminStaffId" />
+          </Key>
+          <Property Name="AdminStaffId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Batch">
+          <Key>
+            <PropertyRef Name="Bid" />
+          </Key>
+          <Property Name="Bid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BNumber" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Campuses">
+          <Key>
+            <PropertyRef Name="CampusId" />
+          </Key>
+          <Property Name="CampusId" Type="int" Nullable="false" />
+          <Property Name="CampusCity" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Coordinators">
+          <Key>
+            <PropertyRef Name="coordinatorId" />
+          </Key>
+          <Property Name="coordinatorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="PhoneNumber" Type="bigint" />
+          <Property Name="Faculty" Type="varchar" MaxLength="100" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Campus" Type="varchar" MaxLength="100" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="EmpId" Type="varchar" MaxLength="100" />
+          <Property Name="Department" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Courses">
+          <Key>
+            <PropertyRef Name="CourseId" />
+          </Key>
+          <Property Name="CourseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseName" Type="varchar" MaxLength="100" />
+          <Property Name="TotalCreditHours" Type="bigint" />
+          <Property Name="CourseCode" Type="varchar" MaxLength="100" />
+          <Property Name="TheoryCreditHours" Type="bigint" />
+          <Property Name="LabCreditHours" Type="bigint" />
+          <Property Name="ProgrammeId" Type="bigint" />
+          <Property Name="TotalMarks" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Did" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Degree">
+          <Key>
+            <PropertyRef Name="Did" />
+          </Key>
+          <Property Name="Did" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Degree_Name" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Endpoints">
+          <Key>
+            <PropertyRef Name="EndpointId" />
+          </Key>
+          <Property Name="EndpointId" Type="int" Nullable="false" />
+          <Property Name="Action" Type="nvarchar(max)" />
+          <Property Name="ControllerName" Type="nvarchar(max)" />
+          <Property Name="URL" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Enroll">
+          <Key>
+            <PropertyRef Name="ErId" />
+          </Key>
+          <Property Name="ErId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentId" Type="bigint" />
+          <Property Name="CourseId" Type="bigint" />
+          <Property Name="SemesterNo" Type="bigint" />
+        </EntityType>
+        <EntityType Name="ExamBranch">
+          <Key>
+            <PropertyRef Name="ExamBranchId" />
+          </Key>
+          <Property Name="ExamBranchId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExamBranchName" Type="varchar" MaxLength="100" />
+          <Property Name="PhoneNumber" Type="bigint" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Campus" Type="varchar" MaxLength="100" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="EmpId" Type="varchar" MaxLength="100" />
+          <Property Name="Branch" Type="varchar" MaxLength="100" />
+          <Property Name="Designation" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Permissions">
+          <Key>
+            <PropertyRef Name="PermissionId" />
+          </Key>
+          <Property Name="PermissionId" Type="int" Nullable="false" />
+          <Property Name="PermissionAllowed" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EndpointId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Programmes">
+          <Key>
+            <PropertyRef Name="ProgrammeId" />
+          </Key>
+          <Property Name="ProgrammeId" Type="int" Nullable="false" />
+          <Property Name="ProgrammeName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RepeatedCourses">
+          <Key>
+            <PropertyRef Name="RepeatedCourseId" />
+          </Key>
+          <Property Name="RepeatedCourseId" Type="int" Nullable="false" />
+          <Property Name="ObtainMarks" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="CourseId" Type="int" Nullable="false" />
+          <Property Name="ProgrammeId" Type="int" Nullable="false" />
+          <Property Name="SemesterId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Results">
+          <Key>
+            <PropertyRef Name="ResultId" />
+          </Key>
+          <Property Name="ResultId" Type="int" Nullable="false" />
+          <Property Name="ObtainMarks" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="CourseId" Type="int" Nullable="false" />
+          <Property Name="SemesterId" Type="int" />
+        </EntityType>
+        <EntityType Name="Scheme">
+          <Key>
+            <PropertyRef Name="Scid" />
+          </Key>
+          <Property Name="Scid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BatchNo" Type="varchar" MaxLength="100" />
+          <Property Name="SchemeNo" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Semesters">
+          <Key>
+            <PropertyRef Name="SemesterId" />
+          </Key>
+          <Property Name="SemesterId" Type="int" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="ProgrammeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="SystemID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FatherName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RollNumber" Type="int" Nullable="false" />
+          <Property Name="Department" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DegreeStatus" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CurrentSemester" Type="int" Nullable="false" />
+          <Property Name="RegistrationNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DegreeStartDate" Type="date" Nullable="false" />
+          <Property Name="CGPA" Type="decimal" Precision="3" Scale="2" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Batch" Type="varchar" MaxLength="10" />
+          <Property Name="Faculty" Type="varchar" MaxLength="100" />
+          <Property Name="Degree" Type="varchar" MaxLength="100" />
+          <Property Name="CampusId" Type="int" />
+        </EntityType>
+        <EntityType Name="StudentsCourses">
+          <Key>
+            <PropertyRef Name="StudentCourseId" />
+          </Key>
+          <Property Name="CourseId" Type="int" Nullable="false" />
+          <Property Name="StudentCourseId" Type="int" Nullable="false" />
+          <Property Name="SemesterNo" Type="bigint" />
+          <Property Name="Pid" Type="bigint" />
+          <Property Name="Scheme" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="UserRoles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="salt" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_AdminStaff_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="AdminStaff" Type="Self.AdminStaff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="AdminStaff">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permissions_Endpoints">
+          <End Role="Endpoints" Type="Self.Endpoints" Multiplicity="1" />
+          <End Role="Permissions" Type="Self.Permissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Endpoints">
+              <PropertyRef Name="EndpointId" />
+            </Principal>
+            <Dependent Role="Permissions">
+              <PropertyRef Name="EndpointId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permissions_UserRoles">
+          <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="1" />
+          <End Role="Permissions" Type="Self.Permissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRoles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="Permissions">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RepeatedCourses_Programmes">
+          <End Role="Programmes" Type="Self.Programmes" Multiplicity="1" />
+          <End Role="RepeatedCourses" Type="Self.RepeatedCourses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programmes">
+              <PropertyRef Name="ProgrammeId" />
+            </Principal>
+            <Dependent Role="RepeatedCourses">
+              <PropertyRef Name="ProgrammeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RepeatedCourses_Students">
+          <End Role="Students" Type="Self.Students" Multiplicity="1" />
+          <End Role="RepeatedCourses" Type="Self.RepeatedCourses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="RepeatedCourses">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Semesters_Programmes">
+          <End Role="Programmes" Type="Self.Programmes" Multiplicity="1" />
+          <End Role="Semesters" Type="Self.Semesters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programmes">
+              <PropertyRef Name="ProgrammeId" />
+            </Principal>
+            <Dependent Role="Semesters">
+              <PropertyRef Name="ProgrammeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Semesters_Students">
+          <End Role="Students" Type="Self.Students" Multiplicity="1" />
+          <End Role="Semesters" Type="Self.Semesters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="Semesters">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_UserRoles">
+          <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRoles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NUMLAutomatedTranscriptModelStoreContainer">
+          <EntitySet Name="AdminStaff" EntityType="Self.AdminStaff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Batch" EntityType="Self.Batch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Campuses" EntityType="Self.Campuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Coordinators" EntityType="Self.Coordinators" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Degree" EntityType="Self.Degree" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Endpoints" EntityType="Self.Endpoints" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Enroll" EntityType="Self.Enroll" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExamBranch" EntityType="Self.ExamBranch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Permissions" EntityType="Self.Permissions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Programmes" EntityType="Self.Programmes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RepeatedCourses" EntityType="Self.RepeatedCourses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Results" EntityType="Self.Results" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Scheme" EntityType="Self.Scheme" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Semesters" EntityType="Self.Semesters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentsCourses" EntityType="Self.StudentsCourses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AdminStaff_Users" Association="Self.FK_AdminStaff_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="AdminStaff" EntitySet="AdminStaff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permissions_Endpoints" Association="Self.FK_Permissions_Endpoints">
+            <End Role="Endpoints" EntitySet="Endpoints" />
+            <End Role="Permissions" EntitySet="Permissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permissions_UserRoles" Association="Self.FK_Permissions_UserRoles">
+            <End Role="UserRoles" EntitySet="UserRoles" />
+            <End Role="Permissions" EntitySet="Permissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RepeatedCourses_Programmes" Association="Self.FK_RepeatedCourses_Programmes">
+            <End Role="Programmes" EntitySet="Programmes" />
+            <End Role="RepeatedCourses" EntitySet="RepeatedCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RepeatedCourses_Students" Association="Self.FK_RepeatedCourses_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="RepeatedCourses" EntitySet="RepeatedCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Semesters_Programmes" Association="Self.FK_Semesters_Programmes">
+            <End Role="Programmes" EntitySet="Programmes" />
+            <End Role="Semesters" EntitySet="Semesters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Semesters_Students" Association="Self.FK_Semesters_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Semesters" EntitySet="Semesters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Users" Association="Self.FK_Students_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_UserRoles" Association="Self.FK_Users_UserRoles">
+            <End Role="UserRoles" EntitySet="UserRoles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NUMLAutomatedTranscriptModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdminStaff">
+          <Key>
+            <PropertyRef Name="AdminStaffId" />
+          </Key>
+          <Property Name="AdminStaffId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_AdminStaff_Users" FromRole="AdminStaff" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Batch">
+          <Key>
+            <PropertyRef Name="Bid" />
+          </Key>
+          <Property Name="Bid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Campus">
+          <Key>
+            <PropertyRef Name="CampusId" />
+          </Key>
+          <Property Name="CampusId" Type="Int32" Nullable="false" />
+          <Property Name="CampusCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Coordinator">
+          <Key>
+            <PropertyRef Name="coordinatorId" />
+          </Key>
+          <Property Name="coordinatorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="Int64" />
+          <Property Name="Faculty" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Campus" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="EmpId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Cours">
+          <Key>
+            <PropertyRef Name="CourseId" />
+          </Key>
+          <Property Name="CourseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TotalCreditHours" Type="Int64" />
+          <Property Name="CourseCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TheoryCreditHours" Type="Int64" />
+          <Property Name="LabCreditHours" Type="Int64" />
+          <Property Name="ProgrammeId" Type="Int64" />
+          <Property Name="TotalMarks" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Did" Type="Int64" />
+        </EntityType>
+        <EntityType Name="Degree">
+          <Key>
+            <PropertyRef Name="Did" />
+          </Key>
+          <Property Name="Did" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Degree_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Endpoint">
+          <Key>
+            <PropertyRef Name="EndpointId" />
+          </Key>
+          <Property Name="EndpointId" Type="Int32" Nullable="false" />
+          <Property Name="Action" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ControllerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Permissions" Relationship="Self.FK_Permissions_Endpoints" FromRole="Endpoints" ToRole="Permissions" />
+        </EntityType>
+        <EntityType Name="Enroll">
+          <Key>
+            <PropertyRef Name="ErId" />
+          </Key>
+          <Property Name="ErId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentId" Type="Int64" />
+          <Property Name="CourseId" Type="Int64" />
+          <Property Name="SemesterNo" Type="Int64" />
+        </EntityType>
+        <EntityType Name="ExamBranch">
+          <Key>
+            <PropertyRef Name="ExamBranchId" />
+          </Key>
+          <Property Name="ExamBranchId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExamBranchName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="Int64" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Campus" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="EmpId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Branch" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Designation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Permission">
+          <Key>
+            <PropertyRef Name="PermissionId" />
+          </Key>
+          <Property Name="PermissionId" Type="Int32" Nullable="false" />
+          <Property Name="PermissionAllowed" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EndpointId" Type="Int32" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Endpoint" Relationship="Self.FK_Permissions_Endpoints" FromRole="Permissions" ToRole="Endpoints" />
+          <NavigationProperty Name="UserRole" Relationship="Self.FK_Permissions_UserRoles" FromRole="Permissions" ToRole="UserRoles" />
+        </EntityType>
+        <EntityType Name="Programme">
+          <Key>
+            <PropertyRef Name="ProgrammeId" />
+          </Key>
+          <Property Name="ProgrammeId" Type="Int32" Nullable="false" />
+          <Property Name="ProgrammeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="RepeatedCourses" Relationship="Self.FK_RepeatedCourses_Programmes" FromRole="Programmes" ToRole="RepeatedCourses" />
+          <NavigationProperty Name="Semesters" Relationship="Self.FK_Semesters_Programmes" FromRole="Programmes" ToRole="Semesters" />
+        </EntityType>
+        <EntityType Name="RepeatedCours">
+          <Key>
+            <PropertyRef Name="RepeatedCourseId" />
+          </Key>
+          <Property Name="RepeatedCourseId" Type="Int32" Nullable="false" />
+          <Property Name="ObtainMarks" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="CourseId" Type="Int32" Nullable="false" />
+          <Property Name="ProgrammeId" Type="Int32" Nullable="false" />
+          <Property Name="SemesterId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Programme" Relationship="Self.FK_RepeatedCourses_Programmes" FromRole="RepeatedCourses" ToRole="Programmes" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_RepeatedCourses_Students" FromRole="RepeatedCourses" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="Result">
+          <Key>
+            <PropertyRef Name="ResultId" />
+          </Key>
+          <Property Name="ResultId" Type="Int32" Nullable="false" />
+          <Property Name="ObtainMarks" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="CourseId" Type="Int32" Nullable="false" />
+          <Property Name="SemesterId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Scheme">
+          <Key>
+            <PropertyRef Name="Scid" />
+          </Key>
+          <Property Name="Scid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BatchNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SchemeNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Semester">
+          <Key>
+            <PropertyRef Name="SemesterId" />
+          </Key>
+          <Property Name="SemesterId" Type="Int32" Nullable="false" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="ProgrammeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Programme" Relationship="Self.FK_Semesters_Programmes" FromRole="Semesters" ToRole="Programmes" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_Semesters_Students" FromRole="Semesters" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="SystemID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RollNumber" Type="Int32" Nullable="false" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DegreeStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CurrentSemester" Type="Int32" Nullable="false" />
+          <Property Name="RegistrationNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DegreeStartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CGPA" Type="Decimal" Precision="3" Scale="2" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Batch" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Faculty" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Degree" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CampusId" Type="Int32" />
+          <NavigationProperty Name="RepeatedCourses" Relationship="Self.FK_RepeatedCourses_Students" FromRole="Students" ToRole="RepeatedCourses" />
+          <NavigationProperty Name="Semesters" Relationship="Self.FK_Semesters_Students" FromRole="Students" ToRole="Semesters" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Students_Users" FromRole="Students" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="StudentsCours">
+          <Key>
+            <PropertyRef Name="StudentCourseId" />
+          </Key>
+          <Property Name="CourseId" Type="Int32" Nullable="false" />
+          <Property Name="StudentCourseId" Type="Int32" Nullable="false" />
+          <Property Name="SemesterNo" Type="Int64" />
+          <Property Name="Pid" Type="Int64" />
+          <Property Name="Scheme" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Permissions" Relationship="Self.FK_Permissions_UserRoles" FromRole="UserRoles" ToRole="Permissions" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_UserRoles" FromRole="UserRoles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="salt" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AdminStaffs" Relationship="Self.FK_AdminStaff_Users" FromRole="Users" ToRole="AdminStaff" />
+          <NavigationProperty Name="Students" Relationship="Self.FK_Students_Users" FromRole="Users" ToRole="Students" />
+          <NavigationProperty Name="UserRole" Relationship="Self.FK_Users_UserRoles" FromRole="Users" ToRole="UserRoles" />
+        </EntityType>
+        <Association Name="FK_AdminStaff_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="AdminStaff" Type="Self.AdminStaff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="AdminStaff">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permissions_Endpoints">
+          <End Role="Endpoints" Type="Self.Endpoint" Multiplicity="1" />
+          <End Role="Permissions" Type="Self.Permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Endpoints">
+              <PropertyRef Name="EndpointId" />
+            </Principal>
+            <Dependent Role="Permissions">
+              <PropertyRef Name="EndpointId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permissions_UserRoles">
+          <End Role="UserRoles" Type="Self.UserRole" Multiplicity="1" />
+          <End Role="Permissions" Type="Self.Permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRoles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="Permissions">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RepeatedCourses_Programmes">
+          <End Role="Programmes" Type="Self.Programme" Multiplicity="1" />
+          <End Role="RepeatedCourses" Type="Self.RepeatedCours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programmes">
+              <PropertyRef Name="ProgrammeId" />
+            </Principal>
+            <Dependent Role="RepeatedCourses">
+              <PropertyRef Name="ProgrammeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Semesters_Programmes">
+          <End Role="Programmes" Type="Self.Programme" Multiplicity="1" />
+          <End Role="Semesters" Type="Self.Semester" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programmes">
+              <PropertyRef Name="ProgrammeId" />
+            </Principal>
+            <Dependent Role="Semesters">
+              <PropertyRef Name="ProgrammeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RepeatedCourses_Students">
+          <End Role="Students" Type="Self.Student" Multiplicity="1" />
+          <End Role="RepeatedCourses" Type="Self.RepeatedCours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="RepeatedCourses">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Semesters_Students">
+          <End Role="Students" Type="Self.Student" Multiplicity="1" />
+          <End Role="Semesters" Type="Self.Semester" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="Semesters">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Students" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_UserRoles">
+          <End Role="UserRoles" Type="Self.UserRole" Multiplicity="1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRoles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NUMLAutomatedTranscriptEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdminStaffs" EntityType="Self.AdminStaff" />
+          <EntitySet Name="Batches" EntityType="Self.Batch" />
+          <EntitySet Name="Campuses" EntityType="Self.Campus" />
+          <EntitySet Name="Coordinators" EntityType="Self.Coordinator" />
+          <EntitySet Name="Courses" EntityType="Self.Cours" />
+          <EntitySet Name="Degrees" EntityType="Self.Degree" />
+          <EntitySet Name="Endpoints" EntityType="Self.Endpoint" />
+          <EntitySet Name="Enrolls" EntityType="Self.Enroll" />
+          <EntitySet Name="ExamBranches" EntityType="Self.ExamBranch" />
+          <EntitySet Name="Permissions" EntityType="Self.Permission" />
+          <EntitySet Name="Programmes" EntityType="Self.Programme" />
+          <EntitySet Name="RepeatedCourses" EntityType="Self.RepeatedCours" />
+          <EntitySet Name="Results" EntityType="Self.Result" />
+          <EntitySet Name="Schemes" EntityType="Self.Scheme" />
+          <EntitySet Name="Semesters" EntityType="Self.Semester" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <EntitySet Name="StudentsCourses" EntityType="Self.StudentsCours" />
+          <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_AdminStaff_Users" Association="Self.FK_AdminStaff_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="AdminStaff" EntitySet="AdminStaffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permissions_Endpoints" Association="Self.FK_Permissions_Endpoints">
+            <End Role="Endpoints" EntitySet="Endpoints" />
+            <End Role="Permissions" EntitySet="Permissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permissions_UserRoles" Association="Self.FK_Permissions_UserRoles">
+            <End Role="UserRoles" EntitySet="UserRoles" />
+            <End Role="Permissions" EntitySet="Permissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RepeatedCourses_Programmes" Association="Self.FK_RepeatedCourses_Programmes">
+            <End Role="Programmes" EntitySet="Programmes" />
+            <End Role="RepeatedCourses" EntitySet="RepeatedCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Semesters_Programmes" Association="Self.FK_Semesters_Programmes">
+            <End Role="Programmes" EntitySet="Programmes" />
+            <End Role="Semesters" EntitySet="Semesters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RepeatedCourses_Students" Association="Self.FK_RepeatedCourses_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="RepeatedCourses" EntitySet="RepeatedCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Semesters_Students" Association="Self.FK_Semesters_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Semesters" EntitySet="Semesters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Users" Association="Self.FK_Students_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_UserRoles" Association="Self.FK_Users_UserRoles">
+            <End Role="UserRoles" EntitySet="UserRoles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NUMLAutomatedTranscriptModelStoreContainer" CdmEntityContainer="NUMLAutomatedTranscriptEntities">
+          <EntitySetMapping Name="AdminStaffs">
+            <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.AdminStaff">
+              <MappingFragment StoreEntitySet="AdminStaff">
+                <ScalarProperty Name="AdminStaffId" ColumnName="AdminStaffId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Batches">
+            <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.Batch">
+              <MappingFragment StoreEntitySet="Batch">
+                <ScalarProperty Name="Bid" ColumnName="Bid" />
+                <ScalarProperty Name="BNumber" ColumnName="BNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Campuses">
+            <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.Campus">
+              <MappingFragment StoreEntitySet="Campuses">
+                <ScalarProperty Name="CampusId" ColumnName="CampusId" />
+                <ScalarProperty Name="CampusCity" ColumnName="CampusCity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Coordinators">
+            <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.Coordinator">
+              <MappingFragment StoreEntitySet="Coordinators">
+                <ScalarProperty Name="coordinatorId" ColumnName="coordinatorId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Faculty" ColumnName="Faculty" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Campus" ColumnName="Campus" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.Cours">
+              <MappingFragment StoreEntitySet="Courses">
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="TotalCreditHours" ColumnName="TotalCreditHours" />
+                <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
+                <ScalarProperty Name="TheoryCreditHours" ColumnName="TheoryCreditHours" />
+                <ScalarProperty Name="LabCreditHours" ColumnName="LabCreditHours" />
+                <ScalarProperty Name="ProgrammeId" ColumnName="ProgrammeId" />
+                <ScalarProperty Name="TotalMarks" ColumnName="TotalMarks" />
+                <ScalarProperty Name="Did" ColumnName="Did" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Degrees">
+            <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.Degree">
+              <MappingFragment StoreEntitySet="Degree">
+                <ScalarProperty Name="Did" ColumnName="Did" />
+                <ScalarProperty Name="Degree_Name" ColumnName="Degree_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Endpoints">
+            <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.Endpoint">
+              <MappingFragment StoreEntitySet="Endpoints">
+                <ScalarProperty Name="EndpointId" ColumnName="EndpointId" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Enrolls">
+            <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.Enroll">
+              <MappingFragment StoreEntitySet="Enroll">
+                <ScalarProperty Name="ErId" ColumnName="ErId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="SemesterNo" ColumnName="SemesterNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExamBranches">
+            <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.ExamBranch">
+              <MappingFragment StoreEntitySet="ExamBranch">
+                <ScalarProperty Name="ExamBranchId" ColumnName="ExamBranchId" />
+                <ScalarProperty Name="ExamBranchName" ColumnName="ExamBranchName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Campus" ColumnName="Campus" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permissions">
+            <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.Permission">
+              <MappingFragment StoreEntitySet="Permissions">
+                <ScalarProperty Name="PermissionId" ColumnName="PermissionId" />
+                <ScalarProperty Name="PermissionAllowed" ColumnName="PermissionAllowed" />
+                <ScalarProperty Name="EndpointId" ColumnName="EndpointId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Programmes">
+            <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.Programme">
+              <MappingFragment StoreEntitySet="Programmes">
+                <ScalarProperty Name="ProgrammeId" ColumnName="ProgrammeId" />
+                <ScalarProperty Name="ProgrammeName" ColumnName="ProgrammeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RepeatedCourses">
+            <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.RepeatedCours">
+              <MappingFragment StoreEntitySet="RepeatedCourses">
+                <ScalarProperty Name="RepeatedCourseId" ColumnName="RepeatedCourseId" />
+                <ScalarProperty Name="ObtainMarks" ColumnName="ObtainMarks" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="ProgrammeId" ColumnName="ProgrammeId" />
+                <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Results">
+            <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.Result">
+              <MappingFragment StoreEntitySet="Results">
+                <ScalarProperty Name="ResultId" ColumnName="ResultId" />
+                <ScalarProperty Name="ObtainMarks" ColumnName="ObtainMarks" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schemes">
+            <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.Scheme">
+              <MappingFragment StoreEntitySet="Scheme">
+                <ScalarProperty Name="Scid" ColumnName="Scid" />
+                <ScalarProperty Name="BatchNo" ColumnName="BatchNo" />
+                <ScalarProperty Name="SchemeNo" ColumnName="SchemeNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Semesters">
+            <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.Semester">
+              <MappingFragment StoreEntitySet="Semesters">
+                <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="ProgrammeId" ColumnName="ProgrammeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.Student">
+              <MappingFragment StoreEntitySet="Students">
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="SystemID" ColumnName="SystemID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="RollNumber" ColumnName="RollNumber" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="DegreeStatus" ColumnName="DegreeStatus" />
+                <ScalarProperty Name="CurrentSemester" ColumnName="CurrentSemester" />
+                <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
+                <ScalarProperty Name="DegreeStartDate" ColumnName="DegreeStartDate" />
+                <ScalarProperty Name="CGPA" ColumnName="CGPA" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Batch" ColumnName="Batch" />
+                <ScalarProperty Name="Faculty" ColumnName="Faculty" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="CampusId" ColumnName="CampusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentsCourses">
+            <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.StudentsCours">
+              <MappingFragment StoreEntitySet="StudentsCourses">
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="StudentCourseId" ColumnName="StudentCourseId" />
+                <ScalarProperty Name="SemesterNo" ColumnName="SemesterNo" />
+                <ScalarProperty Name="Pid" ColumnName="Pid" />
+                <ScalarProperty Name="Scheme" ColumnName="Scheme" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRoles">
+            <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.UserRole">
+              <MappingFragment StoreEntitySet="UserRoles">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="salt" ColumnName="salt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
