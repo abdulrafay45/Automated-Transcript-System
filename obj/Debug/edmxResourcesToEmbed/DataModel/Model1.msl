@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="NUMLAutomatedTranscriptModelStoreContainer" CdmEntityContainer="NUMLAutomatedTranscriptEntities">
+    <EntitySetMapping Name="AdminStaffs">
+      <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.AdminStaff">
+        <MappingFragment StoreEntitySet="AdminStaff">
+          <ScalarProperty Name="AdminStaffId" ColumnName="AdminStaffId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Batches">
+      <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.Batch">
+        <MappingFragment StoreEntitySet="Batch">
+          <ScalarProperty Name="Bid" ColumnName="Bid" />
+          <ScalarProperty Name="BNumber" ColumnName="BNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Campuses">
+      <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.Campus">
+        <MappingFragment StoreEntitySet="Campuses">
+          <ScalarProperty Name="CampusId" ColumnName="CampusId" />
+          <ScalarProperty Name="CampusCity" ColumnName="CampusCity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Coordinators">
+      <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.Coordinator">
+        <MappingFragment StoreEntitySet="Coordinators">
+          <ScalarProperty Name="coordinatorId" ColumnName="coordinatorId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Faculty" ColumnName="Faculty" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Campus" ColumnName="Campus" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Courses">
+      <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.Cours">
+        <MappingFragment StoreEntitySet="Courses">
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="TotalCreditHours" ColumnName="TotalCreditHours" />
+          <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
+          <ScalarProperty Name="TheoryCreditHours" ColumnName="TheoryCreditHours" />
+          <ScalarProperty Name="LabCreditHours" ColumnName="LabCreditHours" />
+          <ScalarProperty Name="ProgrammeId" ColumnName="ProgrammeId" />
+          <ScalarProperty Name="TotalMarks" ColumnName="TotalMarks" />
+          <ScalarProperty Name="Did" ColumnName="Did" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Degrees">
+      <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.Degree">
+        <MappingFragment StoreEntitySet="Degree">
+          <ScalarProperty Name="Did" ColumnName="Did" />
+          <ScalarProperty Name="Degree_Name" ColumnName="Degree_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Endpoints">
+      <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.Endpoint">
+        <MappingFragment StoreEntitySet="Endpoints">
+          <ScalarProperty Name="EndpointId" ColumnName="EndpointId" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Enrolls">
+      <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.Enroll">
+        <MappingFragment StoreEntitySet="Enroll">
+          <ScalarProperty Name="ErId" ColumnName="ErId" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="SemesterNo" ColumnName="SemesterNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExamBranches">
+      <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.ExamBranch">
+        <MappingFragment StoreEntitySet="ExamBranch">
+          <ScalarProperty Name="ExamBranchId" ColumnName="ExamBranchId" />
+          <ScalarProperty Name="ExamBranchName" ColumnName="ExamBranchName" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Campus" ColumnName="Campus" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+          <ScalarProperty Name="Branch" ColumnName="Branch" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Permissions">
+      <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.Permission">
+        <MappingFragment StoreEntitySet="Permissions">
+          <ScalarProperty Name="PermissionId" ColumnName="PermissionId" />
+          <ScalarProperty Name="PermissionAllowed" ColumnName="PermissionAllowed" />
+          <ScalarProperty Name="EndpointId" ColumnName="EndpointId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Programmes">
+      <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.Programme">
+        <MappingFragment StoreEntitySet="Programmes">
+          <ScalarProperty Name="ProgrammeId" ColumnName="ProgrammeId" />
+          <ScalarProperty Name="ProgrammeName" ColumnName="ProgrammeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RepeatedCourses">
+      <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.RepeatedCours">
+        <MappingFragment StoreEntitySet="RepeatedCourses">
+          <ScalarProperty Name="RepeatedCourseId" ColumnName="RepeatedCourseId" />
+          <ScalarProperty Name="ObtainMarks" ColumnName="ObtainMarks" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="ProgrammeId" ColumnName="ProgrammeId" />
+          <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Results">
+      <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.Result">
+        <MappingFragment StoreEntitySet="Results">
+          <ScalarProperty Name="ResultId" ColumnName="ResultId" />
+          <ScalarProperty Name="ObtainMarks" ColumnName="ObtainMarks" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Schemes">
+      <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.Scheme">
+        <MappingFragment StoreEntitySet="Scheme">
+          <ScalarProperty Name="Scid" ColumnName="Scid" />
+          <ScalarProperty Name="BatchNo" ColumnName="BatchNo" />
+          <ScalarProperty Name="SchemeNo" ColumnName="SchemeNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Semesters">
+      <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.Semester">
+        <MappingFragment StoreEntitySet="Semesters">
+          <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="ProgrammeId" ColumnName="ProgrammeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.Student">
+        <MappingFragment StoreEntitySet="Students">
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="SystemID" ColumnName="SystemID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+          <ScalarProperty Name="RollNumber" ColumnName="RollNumber" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="DegreeStatus" ColumnName="DegreeStatus" />
+          <ScalarProperty Name="CurrentSemester" ColumnName="CurrentSemester" />
+          <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
+          <ScalarProperty Name="DegreeStartDate" ColumnName="DegreeStartDate" />
+          <ScalarProperty Name="CGPA" ColumnName="CGPA" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Batch" ColumnName="Batch" />
+          <ScalarProperty Name="Faculty" ColumnName="Faculty" />
+          <ScalarProperty Name="Degree" ColumnName="Degree" />
+          <ScalarProperty Name="CampusId" ColumnName="CampusId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudentsCourses">
+      <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.StudentsCours">
+        <MappingFragment StoreEntitySet="StudentsCourses">
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="StudentCourseId" ColumnName="StudentCourseId" />
+          <ScalarProperty Name="SemesterNo" ColumnName="SemesterNo" />
+          <ScalarProperty Name="Pid" ColumnName="Pid" />
+          <ScalarProperty Name="Scheme" ColumnName="Scheme" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRoles">
+      <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.UserRole">
+        <MappingFragment StoreEntitySet="UserRoles">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="NUMLAutomatedTranscriptModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="salt" ColumnName="salt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
