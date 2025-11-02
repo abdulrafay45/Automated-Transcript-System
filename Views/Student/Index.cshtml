@@ -1,0 +1,75 @@
+﻿@model FYPWeb.DataModel.User
+@{
+    ViewBag.Title = "Index";
+}
+<html>
+<head>
+    <title>NUML</title>
+    <link rel="shortcut icon" type="image/png" href="~/Images/logo.png" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min2.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.css.map" />
+    <link rel="stylesheet" href="~/CSS/style.css" />
+</head>
+<body>
+    <div class="box-form">
+        <div class="left">
+            <div class="overlay">
+                <center>
+                    <h1>NUML</h1>
+                    <h2>Transcript Dashboard</h2>
+                </center>
+                <img src="~/Images/Loginpg.png" style="width:80%;height:auto;margin-right:-6%" />
+            </div>
+        </div>
+
+
+
+        <div class="right">
+            <center>
+                <h3>Welcome!</h3>
+                <p>Sign in to continue to Dashboard</p>
+                @if (!string.IsNullOrEmpty(ViewBag.Error))
+                {
+                    <div class="alert alert-warning" id="alertMessage">
+                        <h6>@ViewBag.Error</h6>
+                    </div>
+                }
+            </center>
+            @using (Html.BeginForm("Login", "Student", FormMethod.Post))
+            {
+                <div class="inputs">
+                    @Html.TextBoxFor(model => model.Username, new { placeholder = "Username" })
+                    <br />
+                    @Html.PasswordFor(model => model.Password, new { placeholder = "Password" })
+                </div>
+
+                <br /><br />
+
+                
+
+                <br />
+                <button type="submit">Login</button>
+            }
+        </div>
+
+
+
+    </div>
+    <script>
+        var alertMessage = document.getElementById('alertMessage');
+
+        // Function to hide the alert message
+        function hideAlert() {
+            alertMessage.style.display = 'none'; // Hide the alert message
+        }
+
+        // Hide the alert message after 2 seconds
+        setTimeout(hideAlert, 2000);
+    </script>
+
+</body>
+</html>
+
+
+

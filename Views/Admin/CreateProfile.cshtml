@@ -1,0 +1,570 @@
+﻿
+@{
+    ViewBag.Title = "Test";
+}
+@model FYPWeb.Model.StudentUser
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/font/material-design-icons/Material-Design-Icons.woff" rel="stylesheet">
+    <link rel="stylesheet" href="~/CSS/Slide Bar .css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUML</title>
+    <link rel="shortcut icon" type="image/png" href="~/Images/logo.png" />
+
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.css.map" />
+    <link rel="stylesheet" href="~/fonts/Font/font-awesome/css/all.min.css" />
+</head>
+
+<body>
+
+    <ul id="slide-out" class="side-nav fixed z-depth-2">
+        <li class="center no-padding">
+            <div class="indigo darken-2 white-text" style="height: 180px;">
+                <div class="row">
+                    <img style="margin-top: 5%;" width="100" height="100" src="~/Images/Graduation Cap.png" class="responsive-img" />
+                    <p style=" color: black; font-family: Minion Variable Concept;">
+                        Admin Panel
+                    </p>
+                </div>
+            </div>
+        </li>
+        <li id="dash_dashboard"><a class="waves-effect" href="@Url.Action("AdminDashboard","Admin")"><i class="fa fa-home"></i>&nbsp;&nbsp;<b>Dashboard</b></a></li>
+
+        <li id="dash_dashboard"><a class="waves-effect" href="@Url.Action("Logout","Student")"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;<b>Logout</b></a></li>
+
+
+    </ul>
+
+    <header>
+
+        <nav class="indigo" role="navigation">
+            <div class="nav-wrapper">
+                <a data-activates="slide-out" class="button-collapse show-on-" href="#!"><img style="margin-top: 17px; margin-left: 5px;" src="https://res.cloudinary.com/dacg0wegv/image/upload/t_media_lib_thumb/v1463989873/smaller-main-logo_3_bm40iv.gif" /></a>
+                <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+            </div>
+        </nav>
+
+    </header>
+    <main>
+        <div class="row" style="Width:98%; margin-left:2%">
+
+
+            <div class="col s12">
+                <div style="padding: 35px 35px 0 35px; text-align: center;" class="card">
+                    <div class="row" style="margin: 0;">
+                        <div class="card-title">
+                            <b>Profile Detail</b>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div style="padding: 10px 30px 30px 30px;" class="col s12 lighten-3 waves-effect">
+                            <div class="row">
+                                <!-- Profile Picture Column -->
+                                <div class="col s12 m4">
+                                    <img src="~/Images/Rectangle 1.jpg" class="responsive-img" style="border-radius: 20%;" alt="Profile Picture" />
+                                </div>
+                                <!-- End Profile Picture Column -->
+                                <!-- Profile Details Column -->
+                                <div class="col s12 m8" style="margin-top: 2%; color: black;">
+                                    <div style="text-align: left; font-family: 'Minion Variable Concept';">
+                                        <h4>@Model.Admin.Name</h4>
+                                        <h5>Admin Id: @Model.Admin.AdminStaffId</h5>
+                                        <h5>Department: Admin Branch</h5>
+                                    </div>
+                                </div>
+                                <!-- End Profile Details Column -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-12" style="margin-bottom: 3%;">
+                <h1>Create Profile</h1>
+
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <button id="studentBtn" class="btn btn-primary btn-block" style="margin-bottom: 10px;">
+                            Student
+                        </button>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <button id="coordinatorBtn" class="btn btn-primary btn-block" style="margin-bottom: 10px;">
+                            Coordinator
+                        </button>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <button id="examBranchBtn" class="btn btn-primary btn-block" style="margin-bottom: 10px;">
+                            Exam Branch
+                        </button>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <button id="adminBtn" class="btn btn-primary btn-block" style="margin-bottom: 10px;">
+                            Admin
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+            @if (!string.IsNullOrEmpty(ViewBag.Profile))
+            {
+                <div class="col-lg-12 alert" id="alertMessage">
+                    <h3>@ViewBag.Profile</h3>
+                </div>
+            }
+            <div id="studentForm" class="defaultButton">
+                @using (Html.BeginForm("CreateStudent", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="row form-group">
+                                    <div class="col-lg-4">
+                                        @Html.LabelFor(model => model.Student.Name)
+                                    </div>
+                                    <div class="col-lg-8">
+                                        @Html.TextBoxFor(model => model.Student.Name, new { placeholder = "Name", @class = "form-control", @required = "required" })
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-lg-4">
+                                        @Html.LabelFor(model => model.Student.SystemID)
+                                    </div>
+                                    <div class="col-lg-8">
+                                        @Html.TextBoxFor(model => model.Student.SystemID, new { placeholder = "System ID", @class = "form-control", @required = "required" })
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-lg-4">
+                                        @Html.LabelFor(model => model.Student.Department)
+                                    </div>
+                                    <div class="col-lg-8">
+                                        @Html.DropDownListFor(model => model.Student.Department, new SelectList(Model.Programmes, "ProgrammeId", "ProgrammeName"), "-- Select Program --", new { @class = "form-control", @required = "required" })
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-lg-4">
+                                        @Html.LabelFor(model => model.Student.Degree)
+                                    </div>
+                                    <div class="col-lg-8">
+                                        @Html.TextBoxFor(model => model.Student.Degree, new { placeholder = "Degree", @class = "form-control", @required = "required" })
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-lg-4">
+                                        @Html.LabelFor(model => model.Student.Email)
+                                    </div>
+                                    <div class="col-lg-8">
+                                        @Html.TextBoxFor(model => model.Student.Email, new { placeholder = "Email", type = "email", @class = "form-control", @required = "required" })
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-lg-4">
+                                        @Html.LabelFor(model => model.Student.Batch)
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div>
+                                            @Html.DropDownListFor(model => model.Student.Batch, new SelectList(Model.Batches, "BNumber", "BNumber"), "-- Select Batch --", new { @class = "form-control", @required = "required" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-lg-4">
+                                        @Html.LabelFor(model => model.Student.DegreeStartDate)
+                                    </div>
+                                    <div class="col-lg-8">
+                                        @Html.TextBoxFor(model => model.Student.DegreeStartDate, new { type = "date", @class = "form-control", @required = "required" })
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-lg-4">
+                                        @Html.LabelFor(model => model.Student.CurrentSemester)
+                                    </div>
+                                    <div class="col-lg-8">
+                                        @Html.DropDownListFor(model => model.Student.CurrentSemester, new SelectList(Enumerable.Range(1, 12).Select(x => new SelectListItem { Value = x.ToString(), Text = x.ToString() }), "Value", "Text"), "Select Semester", new { @class = "form-control", style = "margin-bottom: 10px;", @required = "required" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="row form-group">
+                                    <div class="col-lg-4">
+                                        @Html.LabelFor(model => model.Student.FatherName)
+                                    </div>
+                                    <div class="col-lg-8">
+                                        @Html.TextBoxFor(model => model.Student.FatherName, new { placeholder = "Father Name", @class = "form-control", @required = "required" })
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-lg-4">
+                                        @Html.LabelFor(model => model.Student.RegistrationNumber)
+                                    </div>
+                                    <div class="col-lg-8">
+                                        @Html.TextBoxFor(model => model.Student.RegistrationNumber, new { placeholder = "Registration Number", @class = "form-control", @required = "required" })
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-lg-4">
+                                        @Html.LabelFor(model => model.Student.RollNumber)
+                                    </div>
+                                    <div class="col-lg-8">
+                                        @Html.TextBoxFor(model => model.Student.RollNumber, new { placeholder = "Roll No", type = "number", @class = "form-control", @required = "required" })
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-lg-4">
+                                        @Html.LabelFor(model => model.Student.Faculty)
+                                    </div>
+                                    <div class="col-lg-8">
+                                        @Html.TextBoxFor(model => model.Student.Faculty, new { placeholder = "Faculty", @class = "form-control", @required = "required" })
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-lg-4">
+                                        @Html.LabelFor(model => model.Student.DegreeStatus)
+                                    </div>
+                                    <div class="col-lg-8">
+                                        @Html.DropDownListFor(model => model.Student.DegreeStatus, new List<SelectListItem>
+                                        {
+                                            new SelectListItem { Text = "Incomplete", Value = "Incomplete" },
+                                            new SelectListItem { Text = "Completed", Value = "Completed" }
+                                        }, "Select Degree Status", new { @class = "form-control", @required = "required" })
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-lg-4">
+                                        @Html.LabelFor(model => model.Student.CampusId)
+                                    </div>
+                                    <div class="col-lg-8">
+                                        @Html.DropDownListFor(model => model.Student.CampusId, new SelectList(Model.Campus, "CampusId", "CampusCity"), "-- Select Campus --", new { @class = "form-control", @required = "required" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12" style="text-align: center; margin-top: 20px;">
+                                <input type="submit" class="btn btn-primary" value="Create" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+
+            <div id="coordinatorForm" class="defaultButton" style="display: none;">
+                @using (Html.BeginForm("CreateCoordinator", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <h3>Name:</h3>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h4>@Html.TextBoxFor(model => model.Coordinator.Name, new { placeholder = "Name", @class = "form-control", @required = "required" })</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <h3>User Name:</h3>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h4>@Html.TextBoxFor(model => model.User.Username, new { placeholder = "User Name", @class = "form-control", @required = "required" })</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <h3>Employee ID:</h3>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h4>@Html.TextBoxFor(model => model.Coordinator.EmpId, new { placeholder = "Emp ID", @class = "form-control", @required = "required" })</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <h3>Department:</h3>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h4>@Html.TextBoxFor(model => model.Coordinator.Department, new { placeholder = "Department", @class = "form-control", @required = "required" })</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <h3>Email:</h3>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h4>@Html.TextBoxFor(model => model.Coordinator.Email, new { placeholder = "Email", @class = "form-control", @required = "required" })</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <h3>Password:</h3>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h4>@Html.TextBoxFor(model => model.User.Password, new { placeholder = "Password", @class = "form-control", @required = "required" })</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <h3>Phone No:</h3>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h4>@Html.TextBoxFor(model => model.Coordinator.PhoneNumber, new { placeholder = "Phone Number", @class = "form-control", @required = "required" })</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <h3>Faculty:</h3>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h4>@Html.TextBoxFor(model => model.Coordinator.Faculty, new { placeholder = "Faculty", @class = "form-control", @required = "required" })</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <h3>Campus:</h3>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        @Html.DropDownListFor(model => model.Coordinator.Campus, new SelectList(Model.Campus, "CampusId", "CampusCity"), "-- Select Campus --", new { @class = "form-control", @required = "required" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12" style="margin-bottom: 20%;">
+                        <div class="col-lg-7"></div>
+                        <div class="col-lg-4">
+                            <input type="submit" style="margin-left: 35%; padding: 3% 6% 3% 6%; background-color: #8ea1e6; border: none; font-size: 20px; border-radius: 15px; color: white;" value="Create" />
+                        </div>
+                    </div>
+                }
+            </div>
+
+
+            <div id="examBranchForm" style="display: none;">
+                @using (Html.BeginForm("CreateExamBranch", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <h3>Name:</h3>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h4>@Html.TextBoxFor(model => model.examBranch.ExamBranchName, new { placeholder = "Name", @class = "form-control", @required = "required" })</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <h3>User Name:</h3>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h4>@Html.TextBoxFor(model => model.User.Username, new { placeholder = "User Name", @class = "form-control", @required = "required" })</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <h3>Employee ID:</h3>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h4>@Html.TextBoxFor(model => model.examBranch.EmpId, new { placeholder = "Emp ID", @class = "form-control", @required = "required" })</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <h3>Branch:</h3>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h4>@Html.TextBoxFor(model => model.examBranch.Branch, new { placeholder = "Branch", @class = "form-control", @required = "required" })</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <h3>Email:</h3>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h4>@Html.TextBoxFor(model => model.examBranch.Email, new { placeholder = "Email", @class = "form-control", @required = "required" })</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <h3>Password:</h3>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h4>@Html.TextBoxFor(model => model.User.Password, new { placeholder = "Password", @class = "form-control", @required = "required" })</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <h3>Phone No:</h3>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h4>@Html.TextBoxFor(model => model.examBranch.PhoneNumber, new { placeholder = "Phone Number", @class = "form-control", @required = "required" })</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <h3>Designation:</h3>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h4>@Html.TextBoxFor(model => model.examBranch.Designation, new { placeholder = "Designation", @class = "form-control", @required = "required" })</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <h3>Campus:</h3>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        @Html.DropDownListFor(model => model.examBranch.Campus, new SelectList(Model.Campus, "CampusId", "CampusCity"), "-- Select Campus --", new { @class = "form-control", @required = "required" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12" style="margin-bottom: 15%;">
+                        <div class="col-lg-7"></div>
+                        <div class="col-lg-4">
+                            <input type="submit" style="margin-left: 35%; padding: 3% 6% 3% 6%; background-color: #8ea1e6; border: none; font-size: 20px; border-radius: 15px; color: white;" value="Create" />
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div id="adminForm" style="display: none;">
+                @using (Html.BeginForm("CreateAdmin", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <h3>Name:</h3>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h4>@Html.TextBoxFor(model => model.Admin.Name, new { placeholder = "Name", @class = "form-control", @required = "required" })</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <h3>User Name:</h3>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h4>@Html.TextBoxFor(model => model.User.Username, new { placeholder = "User Name", @class = "form-control", @required = "required" })</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <h3>Password:</h3>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h4>@Html.TextBoxFor(model => model.User.Password, new { placeholder = "Password", @class = "form-control", @required = "required" })</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12" style="margin-bottom: 15%;">
+                        <div class="col-lg-7"></div>
+                        <div class="col-lg-4">
+                            <input type="submit" style="margin-left: 35%; padding: 3% 6% 3% 6%; background-color: #8ea1e6; border: none; font-size: 20px; border-radius: 15px; color: white;" value="Create" />
+                        </div>
+                    </div>
+                }
+            </div>
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
+    <script>
+        document.getElementById("studentBtn").classList.add("selected");
+
+        function resetButtons() {
+            document.getElementById("studentBtn").classList.remove("selected");
+            document.getElementById("coordinatorBtn").classList.remove("selected");
+            document.getElementById("examBranchBtn").classList.remove("selected");
+            document.getElementById("adminBtn").classList.remove("selected");
+        }
+
+        document.getElementById("studentBtn").addEventListener("click", function () {
+            resetButtons();
+            this.classList.add("selected");
+            document.getElementById("studentForm").style.display = "block";
+            document.getElementById("coordinatorForm").style.display = "none";
+            document.getElementById("examBranchForm").style.display = "none";
+            document.getElementById("adminForm").style.display = "none";
+        });
+
+        document.getElementById("coordinatorBtn").addEventListener("click", function () {
+            resetButtons();
+            this.classList.add("selected");
+            document.getElementById("studentForm").style.display = "none";
+            document.getElementById("coordinatorForm").style.display = "block";
+            document.getElementById("examBranchForm").style.display = "none";
+            document.getElementById("adminForm").style.display = "none";
+        });
+
+        document.getElementById("examBranchBtn").addEventListener("click", function () {
+            resetButtons();
+            this.classList.add("selected");
+            document.getElementById("studentForm").style.display = "none";
+            document.getElementById("coordinatorForm").style.display = "none";
+            document.getElementById("examBranchForm").style.display = "block";
+            document.getElementById("adminForm").style.display = "none";
+        });
+
+        document.getElementById("adminBtn").addEventListener("click", function () {
+            resetButtons();
+            this.classList.add("selected");
+            document.getElementById("studentForm").style.display = "none";
+            document.getElementById("coordinatorForm").style.display = "none";
+            document.getElementById("examBranchForm").style.display = "none";
+            document.getElementById("adminForm").style.display = "block";
+        });
+    </script>
+    <script>
+        var alertMessage = document.getElementById('alertMessage');
+
+        // Function to hide the alert message
+        function hideAlert() {
+            alertMessage.style.display = 'none'; // Hide the alert message
+        }
+
+        // Hide the alert message after 2 seconds
+        setTimeout(hideAlert, 4000);
+    </script>
+</body>
+</html>
+
+
+
+
+

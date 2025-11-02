@@ -1,0 +1,190 @@
+﻿
+@{
+    ViewBag.Title = "Test";
+}
+@model FYPWeb.Model.StudentUser
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/font/material-design-icons/Material-Design-Icons.woff" rel="stylesheet">
+    <link rel="stylesheet" href="~/CSS/Slide Bar .css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUML</title>
+    <link rel="shortcut icon" type="image/png" href="~/Images/logo.png" />
+
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.css.map" />
+    <link rel="stylesheet" href="~/fonts/Font/font-awesome/css/all.min.css" />
+</head>
+
+<body>
+
+    <ul id="slide-out" class="side-nav fixed z-depth-2">
+        <li class="center no-padding">
+            <div class="indigo darken-2 white-text" style="height: 180px;">
+                <div class="row">
+                    <img style="margin-top: 5%;" width="100" height="100" src="~/Images/Graduation Cap.png" class="responsive-img" />
+                    <p style=" color: black; font-family: Minion Variable Concept;">
+                        Admin Panel
+                    </p>
+                </div>
+            </div>
+        </li>
+        <li id="dash_dashboard"><a class="waves-effect" href="@Url.Action("AdminDashboard","Admin")"><i class="fa fa-home"></i>&nbsp;&nbsp;<b>Dashboard</b></a></li>
+
+        <li id="dash_dashboard"><a class="waves-effect" href="@Url.Action("Logout","Student")"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;<b>Logout</b></a></li>
+
+
+    </ul>
+
+    <header>
+
+        <nav class="indigo" role="navigation">
+            <div class="nav-wrapper">
+                <a data-activates="slide-out" class="button-collapse show-on-" href="#!"><img style="margin-top: 17px; margin-left: 5px;" src="https://res.cloudinary.com/dacg0wegv/image/upload/t_media_lib_thumb/v1463989873/smaller-main-logo_3_bm40iv.gif" /></a>
+                <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+            </div>
+        </nav>
+
+    </header>
+    <main>
+        <div class="row" style="Width:98%; margin-left:2%">
+
+
+            <div class="col s12">
+                <div style="padding: 35px 35px 0 35px; " align="center" class="card">
+                    <div class="row" style="margin:0">
+                        <div class="left card-title">
+                            <b>Profile Detail</b>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <a href="#!">
+                            <div style="padding: 10px 30px 30px 30px ;" class="lighten-3 col s12 waves-effect">
+                                <div class="row">
+                                    <!-- Profile Picture Column -->
+                                    <div class="col s12 m4">
+                                        <img src="~/Images/Rectangle 1.jpg" class="responsive-img" style="border-radius: 20%;" alt="Profile Picture" />
+                                    </div>
+                                    <!-- End Profile Picture Column -->
+                                    <!-- Profile Details Column -->
+                                    <div class="col s12 m8" style="color:black">
+                                        <div style="text-align:left; font-family: Minion Variable Concept;">
+                                            <h2>@Model.Admin.Name</h2>
+                                            <h3>Admin Id:@Model.Admin.AdminStaffId</h3>
+                                            <h3>Department: Admin Branch</h3>
+                                        </div>
+                                    </div>
+
+                                    <!-- End Profile Details Column -->
+                                </div>
+                            </div>
+
+                        </a>
+
+                        <div class="col s1">&nbsp;</div>
+                        <div class="col s1">&nbsp;</div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="container my-4" style="font-family: Minion Variable Concept;">
+                <div class="row mb-3">
+                    <div class="col-12 d-flex justify-content-between align-items-center">
+                        <h1 class="h3 mb-0">Add Program</h1>
+                    </div>
+                </div>
+
+                @using (Html.BeginForm("AddNewProgram", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="shadow-lg">
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label for="ProgramName" class="col-sm-3 col-form-label h4">Program Name:</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model.Programme.ProgrammeName, new { placeholder = "Enter program name", @class = "form-control form-control-lg", @required = "required" })
+                                </div>
+                            </div>
+                            <div class="text-center mt-4">
+                                <input type="submit" class="btn btn-primary btn-lg" value="Add" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
+    <script>
+        document.getElementById("studentBtn").classList.add("selected");
+
+        function resetButtons() {
+            document.getElementById("studentBtn").classList.remove("selected");
+            document.getElementById("coordinatorBtn").classList.remove("selected");
+            document.getElementById("examBranchBtn").classList.remove("selected");
+            document.getElementById("adminBtn").classList.remove("selected");
+        }
+
+        document.getElementById("studentBtn").addEventListener("click", function () {
+            resetButtons();
+            this.classList.add("selected");
+            document.getElementById("studentForm").style.display = "block";
+            document.getElementById("coordinatorForm").style.display = "none";
+            document.getElementById("examBranchForm").style.display = "none";
+            document.getElementById("adminForm").style.display = "none";
+        });
+
+        document.getElementById("coordinatorBtn").addEventListener("click", function () {
+            resetButtons();
+            this.classList.add("selected");
+            document.getElementById("studentForm").style.display = "none";
+            document.getElementById("coordinatorForm").style.display = "block";
+            document.getElementById("examBranchForm").style.display = "none";
+            document.getElementById("adminForm").style.display = "none";
+        });
+
+        document.getElementById("examBranchBtn").addEventListener("click", function () {
+            resetButtons();
+            this.classList.add("selected");
+            document.getElementById("studentForm").style.display = "none";
+            document.getElementById("coordinatorForm").style.display = "none";
+            document.getElementById("examBranchForm").style.display = "block";
+            document.getElementById("adminForm").style.display = "none";
+        });
+
+        document.getElementById("adminBtn").addEventListener("click", function () {
+            resetButtons();
+            this.classList.add("selected");
+            document.getElementById("studentForm").style.display = "none";
+            document.getElementById("coordinatorForm").style.display = "none";
+            document.getElementById("examBranchForm").style.display = "none";
+            document.getElementById("adminForm").style.display = "block";
+        });
+    </script>
+    <script>
+        var alertMessage = document.getElementById('alertMessage');
+
+        // Function to hide the alert message
+        function hideAlert() {
+            alertMessage.style.display = 'none'; // Hide the alert message
+        }
+
+        // Hide the alert message after 2 seconds
+        setTimeout(hideAlert, 4000);
+    </script>
+</body>
+</html>
+
+
+
+
+

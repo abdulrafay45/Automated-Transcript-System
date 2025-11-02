@@ -1,0 +1,158 @@
+﻿@model FYPWeb.Model.StdResult
+@{
+    ViewBag.Title = "PrintTranscript";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUML Semester Transcript</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" href="~/CSS/PrintTable.css" />
+
+    <style>
+        body {
+            font-family: Minion Variable Concept;
+            font-weight: 200;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Set table size */
+        #keywords {
+            width: 100%;
+            border: 1px solid lightgray;
+        }
+
+            #keywords th,
+            #keywords td {
+                padding: 10px;
+                border-collapse: collapse;
+                border: 1px solid lightgray;
+            }
+
+        .watermark {
+            position: fixed;
+            top: 50%;
+            left: 30%;
+            
+            color: rgba(0, 0, 0, 0.2); /* Adjust color and opacity of the watermark */
+            font-size: 5em; /* Adjust font size of the watermark */
+            font-weight: bold;
+            pointer-events: none; /* Ensure the watermark does not interfere with mouse events */
+            z-index: 9999; /* Ensure the watermark stays on top of other content */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="watermark" style="">Unofficial</div>
+        <header>
+            <div>
+                <div style="display: inline-block; width: 20%;">
+                    <img src="~/Images/logo.png" />
+                </div>
+                <div style="display: inline-block; width: 70%;">
+                    <h3 style="color:black">National University of Modern Languages<br /> Islamabad Pakistan</h3>
+                </div>
+            </div>
+        </header>
+        <main>
+            <center><h2>Transcript</h2></center>
+            <div>
+                <div style="display: inline-block; float: left;">
+                    <h4>Student Name : @Model.student.Name</h4>
+                    <h4>Father Name : @Model.student.FatherName</h4>
+                    <h4>Registration No : @Model.student.RegistrationNumber</h4>
+                </div>
+                <div style="display: inline-block;margin-left:50%">
+                    <h4>Roll No : @Model.student.Name</h4>
+                    <h4>Batch : @Model.student.Batch</h4>
+                    <h4>Degree Status : Incomplete</h4>
+                </div>
+
+            </div>
+            @{
+                decimal? SemGPA = 0;
+            }
+
+            @for (int i = 0; i < Model.results.Count;)
+            {
+                int CurrentSemester = (int)Model.results[i].SemesterId;
+                <center><h3>Semester @CurrentSemester</h3></center>
+
+                <table id="keywords" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <th><span>Sr No</span></th>
+                            <th><span>Course</span></th>
+                            <th><span>Cr.Hr</span></th>
+                            <th><span>Obtain Marks</span></th>
+                            <th><span>Total Marks</span></th>
+                            <th><span>Percentage</span></th>
+                            <th><span>GPA</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            decimal? semesterTotalCredits = 0;
+                            decimal? GPA = 0;
+                            decimal? Point = 0;
+                        }
+                        @for (int j = i; j < Model.results.Count && Model.results[j].SemesterId == CurrentSemester; j++, i++)
+                        {
+                            <tr>
+                                <td class="laljgn">1.</td>
+                                <td>@Model.Course[j].CourseName</td>
+                                <td>@Model.Course[j].TotalCreditHours</td>
+                                <td>@Model.results[j].ObtainMarks</td>
+                                <td>@Model.Course[j].TotalMarks</td>
+                                @{
+                                    decimal? pre = (Model.results[j].ObtainMarks / Model.Course[j].TotalMarks) * 100;
+                                    GPA = (Model.results[j].ObtainMarks / Model.Course[j].TotalMarks) * Model.Course[j].TotalCreditHours;
+                                    Point += (Model.results[j].ObtainMarks / Model.Course[j].TotalMarks);
+                                    semesterTotalCredits += Model.Course[j].TotalCreditHours;
+                                }
+                                <td>@pre</td>
+                                <td>@GPA</td>
+                            </tr>
+                        }
+                        @if (semesterTotalCredits != 0)
+                        {
+                            SemGPA = Point * semesterTotalCredits;
+                        }
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <th><span></span></th>
+                            <th><span></span></th>
+                            <th><span></span></th>
+                            <th><span></span></th>
+                            <th><span></span></th>
+                            <th><span>GPA:</span></th>
+                            <th><span>@GPA</span></th>
+                        </tr>
+                    </thead>
+                </table>
+            }
+        </main>
+    </div>
+</body>
+</html>

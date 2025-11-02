@@ -1,0 +1,272 @@
+﻿@{
+    ViewBag.Title = "AddMarks";
+}
+@model  FYPWeb.Model.ManageCourse
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUML</title>
+    <link rel="shortcut icon" type="image/png" href="~/Images/logo.png" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.css.map" />
+    <link rel="stylesheet" href="~/fonts/Font/font-awesome/css/all.min.css" />
+    <link rel="stylesheet" href="~/CSS/Table.css" />
+    <style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #f1f1f1;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <section>
+            <div class="container-fluid" style="padding: 0;">
+                <div class="row" style="height: 100vh; overflow-y: auto;">
+                    <div class="col-lg-2" style="background-color: #8EA1E6; height:100%">
+                        <div style="background: #2B2941; width: 65%;  border-radius: 20px; margin: 40px;padding:10% ">
+                            <img src="~/Images/Graduation Cap.png" style="width:70%;height:auto;margin-right:-6%" />
+                        </div>
+                        <div class="row">
+                            <a href="@Url.Action("CoordinatorsDashboard","Coordinators")" style="color:black">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-3" style="margin-left:3%">
+                                        <img src="~/Images/Vector.png" />
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p style="font-family:Minion Variable Concept; font-weight:bold;font-size:medium">Coordinator Dashboard</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="col-lg-12" style="margin-top: 150%">
+                                <a href="@Url.Action("Logout","Student")" style="color:black">
+                                    <div class="col-lg-3" style="margin-left:3%">
+                                        <i class="fa fa-sign-out"></i>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p style="font-family:Minion Variable Concept; font-weight:bold;font-size:medium">Log out</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-10" style="background-color: #FFFFFF; height:100%">
+                        <div class="row">
+                            <div class="col-lg-12" style="background: #e6e6e6; width: 90%; margin: 5%; border-radius: 25px">
+                                <div class="col-lg-3">
+                                    <img src="~/Images/Rectangle 1.jpg" style="width: 55%; height: auto; border-radius: 20%;margin-top:15%" />
+                                </div>
+                                <div class="col-lg-9" style="text-align:left;font-family: Minion Variable Concept">
+                                    <h1>@Model.coordinator.Name</h1>
+                                    <h3>Admin Id:@Model.coordinator.EmpId</h3>
+                                    <h3>Department: @Model.coordinator.Department</h3>
+                                </div>
+                            </div>
+
+                            @if (!string.IsNullOrEmpty(ViewBag.Profile))
+                            {
+                                <div class="col-lg-12 alert" id="alertMessage">
+                                    <h6>@ViewBag.Profile</h6>
+                                </div>
+                            }
+                            <div class="col-lg-12">
+                                <h3>Add Student Marks using Excel File</h3>
+                            </div>
+
+                            @using (Html.BeginForm("Uploadexcelfile", "Coordinators", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <div class="col-lg-12" style="background: #e6e6e6;margin-left:3%; width: 90%; border-radius: 25px; padding:3% 0 3% 0">
+                                    <div class="col-lg-3">
+                                        <h3>Upload Excel File</h3>
+                                    </div>
+                                    <div class="col-lg-4" style="text-align:left;margin-top:1%;font-size:x-large; font-family: Minion Variable Concept">
+                                        <input type="file" name="file" />
+                                    </div>
+                                    <div class="col-lg-4" style="text-align:left;font-family: Minion Variable Concept">
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-12" style="margin-top:2%">
+                                    <div class="col-lg-7"></div>
+                                    <div class="col-lg-4">
+                                        <input type="submit" style="margin-left: 35%; padding: 3% 6% 3% 6%; background-color: #8ea1e6; border: none; font-size: 20px; border-radius: 15px; color: White" value="Upload File" />
+                                    </div>
+                                </div>
+
+                            }
+
+                            <div class="col-lg-12" style="margin-bottom:3%;">
+                                <h1>Add Student Marks</h1>
+
+
+                            </div>
+
+                            @using (Html.BeginForm("AddNewMarks", "Coordinators", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <div class="col-lg-12">
+                                    <div class="col-lg-6" style="text-align: left;">
+                                        <div class="col-lg-12">
+                                            <div class="col-lg-4">
+                                                <h3>Batch : </h3>
+                                                <h3>Semester : </h3>
+                                                <h3>Course : </h3>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                @Html.DropDownListFor(model => model.Batch.Bid, new SelectList(Model.Batches, "Bid", "BNumber"), "-- Select Batch --", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-bottom:10%", @id = "result_BatchId", @required = "required" })
+                                                <br />
+                                                @Html.DropDownListFor(model => model.result.SemesterId, Enumerable.Empty<SelectListItem>(), "Select Semester", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-bottom:10%", @id = "result_SemesterId", @required = "required" })
+                                                <br />
+                                                @Html.DropDownListFor(model => model.result.CourseId, new SelectList(Model.Batches, "Bid", "BNumber"), "-- Select Course --", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-bottom:10%", @id = "result_CourseId", @required = "required" })
+                                                <br />
+                                                
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6" style="text-align: left;">
+                                        <div class="col-lg-12">
+                                            <div class="col-lg-4">
+                                                <h3>Student Name :</h3>
+                                                <h3>Obtain marks:</h3>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                @Html.DropDownListFor(model => model.SystemID, new SelectList(Enumerable.Empty<SelectListItem>(), "SystemID", "SystemID"), "-- Select Student --", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-bottom:10%", @id = "result_studentId", @required = "required" })
+
+                                                <h4>@Html.TextBoxFor(model => model.result.ObtainMarks, new { placeholder = "Obtain Marks", @class = "form-control", style = "display: inline; margin-bottom:2%", @required = "required", type = "number" })</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12" style="margin-bottom:20%">
+                                    <div class="col-lg-7"></div>
+                                    <div class="col-lg-4">
+                                        <input type="submit" style="margin: 5% 0 0 35%; padding: 3% 6% 3% 6%; background-color: #8ea1e6; border: none; font-size: 20px; border-radius: 15px; color: White" value="Add Marks" />
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </center>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script>
+            $(document).ready(function () {
+                // Function to get semesters by selected batch
+                $("#result_BatchId").change(function () {
+                    var batchId = $(this).val();
+                    var batchNumber = $("#result_BatchId option:selected").text();
+                    console.log("Selected Batch Id:", batchId); // Debugging log
+                    console.log("Selected Batch Number:", batchNumber); // Debugging log
+                    $.ajax({
+                        url: "/Coordinators/GetSemestersForBatch",
+                        type: "GET",
+                        data: { batchName: batchNumber },
+                        success: function (data) {
+                            console.log("Received semesters:", data); // Debugging log
+                            $("#result_SemesterId").empty();
+                            $("#result_SemesterId").append('<option value="">Select Semester</option>'); // Add initial option
+                            $.each(data, function (index, item) {
+                                $("#result_SemesterId").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+                            });
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Error fetching semesters:', error);
+                        }
+                    });
+                });
+
+                // Function to get courses by selected semester
+                $("#result_SemesterId").change(function () {
+                    var semesterId = $(this).val();
+                    $.ajax({
+                        url: "/Coordinators/GetCoursesBySemester",
+                        type: "GET",
+                        data: { semesterId: semesterId },
+                        success: function (data) {
+                            console.log("Received courses:", data); // Debugging log
+                            $("#result_CourseId").empty();
+                            $("#result_CourseId").append('<option value="">-- Select Course --</option>'); // Add initial option
+                            $.each(data, function (index, item) {
+                                $("#result_CourseId").append('<option value="' + item.CourseId + '">' + item.CourseName + '</option>');
+                            });
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Error fetching courses:', error);
+                        }
+                    });
+                });
+
+                // Function to get students by selected semester and course
+                $("#result_CourseId").change(function () {
+                    var semesterId = $("#result_SemesterId").val();
+                    var courseId = $(this).val();
+                    $.ajax({
+                        url: "/Coordinators/GetStudentsBySemesterAndCourse",
+                        type: "GET",
+                        data: { semesterId: semesterId, courseId: courseId },
+                        success: function (data) {
+                            console.log("Received students:", data); // Debugging log
+                            $("#result_StudentId").empty();
+                            $("#result_StudentId").append('<option value="">-- Select Student --</option>'); // Add initial option
+                            $.each(data, function (index, item) {
+                                $("#result_StudentId").append('<option value="' + item.StudentId + '">' + item.SystemID + '</option>');
+                            });
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Error fetching students:', error);
+                        }
+                    });
+                });
+            });
+        </script>
+   
+
+    <script>
+        var alertMessage = document.getElementById('alertMessage');
+
+        // Function to hide the alert message
+        function hideAlert() {
+            alertMessage.style.display = 'none'; // Hide the alert message
+        }
+
+        // Hide the alert message after 2 seconds
+        setTimeout(hideAlert, 2000);
+    </script>
+
+
+
+</body>
+</html>
+

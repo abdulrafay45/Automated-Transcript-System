@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "STranscript";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUML</title>
+    <link rel="shortcut icon" type="image/png" href="~/Images/logo.png" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.css.map" />
+    <link rel="stylesheet" href="~/fonts/Font/font-awesome/css/all.min.css" />
+    <link rel="stylesheet" href="~/CSS/Table.css" />
+    <style>
+        button {
+            float: right;
+            font-size: 16px;
+            padding: 12px 35px;
+            border-radius: 50px;
+            display: inline-block;
+            border: 0;
+            outline: 0;
+            box-shadow: 0px 4px 20px 0px #49c628a6;
+            background-image: linear-gradient(135deg, #70F570 10%, #49C628 100%);
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <section>
+            <div class="container-fluid" style="padding: 0;">
+                <div class="row" style="height: 100vh; overflow-y: auto;">
+                    <div class="col-lg-2" style="background-color: #8EA1E6; height:100%">
+                        <div style="background: #2B2941; width: 65%;  border-radius: 20px; margin: 40px;padding:10% ">
+                            <img src="~/Images/Graduation Cap.png" style="width:70%;height:auto;margin-right:-6%" />
+                        </div>
+                        <div class="row">
+                            <a href="@Url.Action("Dashboard","Student")" style="color:black">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-3" style="margin-left:3%">
+                                        <img src="~/Images/Vector.png" />
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p style="font-family:Minion Variable Concept; font-weight:bold;font-size:medium">Student Dashboard</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="col-lg-12" style="margin-top:150%">
+                                <a href="@Url.Action("Logout","Student")" style="color:black">
+                                    <div class="col-lg-2" style="margin-left:3%">
+                                        <i class="fa fa-sign-out"></i>
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <p style="font-family:Minion Variable Concept; font-weight:bold;font-size:medium">Log out</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-10" style="background-color: #FFFFFF; height:100%">
+                        <div class="row">
+                            <div class="col-lg-12" style="background: #e6e6e6; width: 90%; margin: 5%; border-radius: 25px">
+                                <div class="col-lg-3">
+                                    <img src="~/Images/Rectangle 1.jpg" style="width: 55%; height: auto; border-radius: 20%;margin-top:5%" />
+                                </div>
+                                <div class="col-lg-9" style="text-align:left;font-family: Minion Variable Concept">
+                                    <h1>Muhammad Bilal Raza</h1>
+                                    <h3>Roll:Numl-S20-12277</h3>
+                                    <h3>Degree: BSSE</h3>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-12" style="text-align: left; margin: 3% 0 3% 0; font-family: Minion Variable Concept">
+                                <h2 style="display: inline;">Unofficial Transcript::</h2>
+                                <br />
+                                <div class="col-lg-4">
+                                 From : @Html.TextBox("From", null, new { placeholder = "e.g Semester 1",@class="form-control", style = "display: inline;"})
+                                </div>
+                                <div class="col-lg-4">
+                                To: @Html.TextBox("To", null, new { placeholder = "e.g Semester 1",@class="form-control", style = "display: inline;"})
+                                </div>
+                                <div class="col-lg-3">
+                                    <button type="submit" >Submit</button>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </center>
+</body>
+</html>
+
+
+
+

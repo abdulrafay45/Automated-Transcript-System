@@ -1,0 +1,235 @@
+﻿@{
+    ViewBag.Title = "PrintTranscript2";
+}
+@model FYPWeb.Model.Exambranch
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUML Semester Transcript</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" href="~/CSS/PrintTable.css" />
+
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            margin: 20px auto;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            max-width: 900px;
+            border: 1px solid #ccc;
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 3px solid #333;
+            padding-bottom: 50px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+            header img {
+                max-width: 80px;
+            }
+
+            header .left-logo {
+                position: absolute;
+                left: 0;
+                top: 10px;
+            }
+
+            header .right-logo {
+                position: absolute;
+                right: 0;
+                top: 10px;
+            }
+
+            header h3 {
+                color: #333;
+                margin: 0;
+                margin-top:20px;
+                font-weight: bold;
+                display: inline-block;
+            }
+
+        main {
+            padding: 20px;
+        }
+
+        h2, h3, h4 {
+            color: #333;
+        }
+
+        h2 {
+            font-size: 1.6em;
+            margin-bottom: 25px;
+        }
+        h4 {
+            font-size: 1.3em;
+            font-weight:bold
+            
+        }
+
+        .student-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+
+            .student-info div {
+                width: 32%;
+            }
+
+            .student-info h4 {
+                margin: 8px 0;
+            }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #e9ecef;
+        }
+
+            th.course-column {
+                width: 35%; /* Increase width of Course column */
+            }
+
+        tfoot th {
+            text-align: right;
+            background-color: #f8f9fa;
+        }
+
+        .watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgba(0, 0, 0, 0.05);
+            font-size: 6em;
+            font-weight: bold;
+            pointer-events: none;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div>
+                <img src="~/Images/logo.png" alt="NUML Logo" class="left-logo" />
+                <h3>National University of Modern Languages<br /> Islamabad, Pakistan</h3>
+                <img src="~/Images/logo.png" alt="NUML Logo" class="right-logo" />
+            </div>
+        </header>
+        <main>
+            <h2>Official Transcript</h2>
+            <div class="student-info">
+                <div>
+                    <h4>Student Name: @Model.student.Name</h4>
+                </div>
+                <div>
+                    <h4>Father's Name: @Model.student.FatherName</h4>
+                </div>
+                <div>
+                    <h4>Registration No: @Model.student.RegistrationNumber</h4>
+                </div>
+            </div>
+            <div class="student-info">
+                <div>
+                    <h4>Roll No: @Model.student.RollNumber</h4>
+                </div>
+                <div>
+                    <h4>Batch: @Model.student.Batch</h4>
+                </div>
+                <div>
+                    <h4>Degree Status: Incomplete</h4>
+                </div>
+            </div>
+
+            @{
+                decimal? SemGPA = 0;
+            }
+
+            @for (int i = 0; i < Model.results.Count;)
+            {
+                int CurrentSemester = (int)Model.results[i].SemesterId;
+                <h3>Semester @CurrentSemester</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sr No</th>
+                            <th class="course-column">Course</th>
+                            <th>Cr.Hr</th>
+                            <th>Obtain Marks</th>
+                            <th>Total Marks</th>
+                            <th>Percentage</th>
+                            <th>GPA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            decimal? semesterTotalCredits = 0;
+                            decimal? GPA = 0;
+                            decimal? Point = 0;
+                        }
+                        @for (int j = i; j < Model.results.Count && Model.results[j].SemesterId == CurrentSemester; j++, i++)
+                        {
+                            <tr>
+                                <td>@(j + 1)</td>
+                                <td>@Model.Courses[j].CourseName</td>
+                                <td>@Model.Courses[j].TotalCreditHours</td>
+                                <td>@Model.results[j].ObtainMarks</td>
+                                <td>@Model.Courses[j].TotalMarks</td>
+                                @{
+                                    decimal? pre = (Model.results[j].ObtainMarks / Model.Courses[j].TotalMarks) * 100;
+                                    GPA = (Model.results[j].ObtainMarks / Model.Courses[j].TotalMarks) * Model.Courses[j].TotalCreditHours;
+                                    Point += (Model.results[j].ObtainMarks / Model.Courses[j].TotalMarks);
+                                    semesterTotalCredits += Model.Courses[j].TotalCreditHours;
+                                }
+                                <td>@pre</td>
+                                <td>@GPA</td>
+                            </tr>
+                        }
+                        @if (semesterTotalCredits != 0)
+                        {
+                            SemGPA = Point * semesterTotalCredits;
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="5"></th>
+                            <th>GPA:</th>
+                            <th>@GPA</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            }
+        </main>
+    </div>
+    <div class="watermark">NUML</div>
+</body>
+</html>
+
