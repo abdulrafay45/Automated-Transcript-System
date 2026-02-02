@@ -32,5 +32,5 @@ To ensure performance meets stringent academic expectations, we implemented:
 * **Automated Functional Testing:** Leveraged Selenium to validate the integrity of Official Transcript generation and Results Management.
 
 ## 📄 Documentation
-* **[View Full Project Abstract](./Project%20Report%20Automated%20Transcript%20System%20Final.pdf)** (or link to your file)
+* **[View Full Project Report](./Project%20Report%20Automated%20Transcript%20System%20Final.pdf)** 
 
