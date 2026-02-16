@@ -67,4 +67,4 @@ This system was developed using a **Waterfall Iterative Approach**. Each phaseâ€
 * **Selenium Testing:** Automated scripts were used to verify the "Search Student" and "Transcript Generation" modules.
 
 ## ðŸ“„ Documentation
-* **[Full Technical Report](./Project%20Report%20Automated%20Transcript%20System%20Final.pdf)** - Includes UML Class Diagrams, Sequence Diagrams, and ERD.
+* **[Full Technical Report](https://github.com/abdulrafay45/Automated-Transcript-System/blob/main/Final%20Project%20Report%20Automated%20Transcript%20System%20Final.pdf)** - Includes UML Class Diagrams, Sequence Diagrams, and ERD.
